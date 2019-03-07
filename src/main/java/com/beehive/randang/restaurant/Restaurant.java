@@ -21,5 +21,5 @@ public class Restaurant extends AuditorBase {
 
     @ManyToOne
     @JoinColumn(name = "person_id")
-    private Person person;
+    private Person owner;
 }
