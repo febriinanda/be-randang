@@ -1,14 +1,14 @@
 package com.beehive.randang.invoice;
 
 import com.beehive.randang.exception.ResourceNotFound;
+import com.beehive.randang.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
@@ -58,6 +58,21 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public Invoice findLastInvoiceThisMonth() {
         LocalDateTime lastDay = LocalDateTime.now().with(TemporalAdjusters.lastDayOfMonth()).with(LocalTime.MAX);
-        return invoiceRepository.findOne(Specification.where(InvoiceSpecification.fromLastEntry()).and(InvoiceSpecification.before(Date.from(lastDay.atZone(ZoneId.systemDefault()).toInstant())))).orElse(null);
+        PageRequest pageRequest = PageRequest.of(0, 1);
+
+        return this.findOne(invoiceRepository.findAll(
+                Specification.where(InvoiceSpecification.fromLastEntry())
+                        .and(InvoiceSpecification.before(DateUtils.toDate(lastDay))), pageRequest).getContent(), 0);
+    }
+
+    @Override
+    public Invoice findOne(List<Invoice> invoices, int index) {
+        if(invoices.size() < 1)
+            return null;
+
+        if(index < 0 || index > invoices.size() - 1)
+            throw new ResourceNotFound();
+
+        return invoices.get(index);
     }
 }
