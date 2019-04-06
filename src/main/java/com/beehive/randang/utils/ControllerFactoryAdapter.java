@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class ControllerFactoryAdapter<T,U, V> implements ControllerFactory<T, U> {
     @Autowired
-    protected V provider;
+    protected V service;
 
     @Override
     public List<T> index() {
