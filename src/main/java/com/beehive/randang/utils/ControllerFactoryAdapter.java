@@ -1,15 +1,12 @@
 package com.beehive.randang.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.persistence.MappedSuperclass;
 import java.util.List;
-@MappedSuperclass
+
 public abstract class ControllerFactoryAdapter<T,U, V> implements ControllerFactory<T, U> {
     @Autowired
-    protected V adapter;
+    protected V provider;
 
     @Override
     public List<T> index() {
@@ -27,8 +24,12 @@ public abstract class ControllerFactoryAdapter<T,U, V> implements ControllerFact
     }
 
     @Override
-    @PostMapping("/bulk")
-    public void save(@RequestBody List<T> list) {
+    public void save(List<T> list) {
+
+    }
+
+    @Override
+    public void update(U id, T t) {
 
     }
 }

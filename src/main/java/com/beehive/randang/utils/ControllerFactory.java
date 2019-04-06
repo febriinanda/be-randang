@@ -7,4 +7,5 @@ public interface ControllerFactory<T, U> {
     T findById(U id);
     void save(T t);
     void save(List<T> list);
+    void update(U id, T t);
 }
