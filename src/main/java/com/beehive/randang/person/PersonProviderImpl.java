@@ -31,19 +31,19 @@ public class PersonProviderImpl implements PersonProvider {
 
     @Override
     public void update(Long id, Person person) {
-        Person existing = this.shouldExist(id);
+        Person exist = this.shouldExist(id);
 
-        person.setId(existing.getId());
+        person.setId(exist.getId());
         this.save(person);
     }
 
     @Override
     public Person shouldExist(Long id) {
-        Person existing = this.findById(id);
+        Person person = this.findById(id);
 
-        if(existing == null)
+        if(person == null)
             throw new RuntimeException("This person is not exist");
 
-        return existing;
+        return person;
     }
 }
