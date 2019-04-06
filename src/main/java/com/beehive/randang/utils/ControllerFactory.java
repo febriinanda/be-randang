@@ -2,10 +2,10 @@ package com.beehive.randang.utils;
 
 import java.util.List;
 
-public interface ControllerFactory<T, U> {
+public interface ControllerFactory<T, ID> {
     List<T> index();
-    T findById(U id);
+    T findById(ID id);
     void save(T t);
     void save(List<T> list);
-    void update(U id, T t);
+    void update(ID id, T t);
 }

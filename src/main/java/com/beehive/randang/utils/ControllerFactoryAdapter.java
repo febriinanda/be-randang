@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public abstract class ControllerFactoryAdapter<T,U, V> implements ControllerFactory<T, U> {
+public abstract class ControllerFactoryAdapter<T, ID, V> implements ControllerFactory<T, ID> {
     @Autowired
     protected V service;
 
@@ -14,7 +14,7 @@ public abstract class ControllerFactoryAdapter<T,U, V> implements ControllerFact
     }
 
     @Override
-    public T findById(U id) {
+    public T findById(ID id) {
         return null;
     }
 
@@ -29,7 +29,7 @@ public abstract class ControllerFactoryAdapter<T,U, V> implements ControllerFact
     }
 
     @Override
-    public void update(U id, T t) {
+    public void update(ID id, T t) {
 
     }
 }
