@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.util.Date;
+import java.util.Objects;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
@@ -36,5 +37,19 @@ public class AuditorBase {
     }
 
     public AuditorBase() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AuditorBase)) return false;
+        AuditorBase that = (AuditorBase) o;
+        return Objects.equals(createdDate, that.createdDate) &&
+                Objects.equals(getModifiedDate(), that.getModifiedDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(createdDate, getModifiedDate());
     }
 }
