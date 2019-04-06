@@ -1,7 +1,6 @@
 package com.beehive.randang.person;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import com.beehive.randang.utils.CommonRepository;
 
-interface PersonRepository extends JpaRepository<Person, Long>, JpaSpecificationExecutor<Person> {
+interface PersonRepository extends CommonRepository<Person, Long> {
 }
