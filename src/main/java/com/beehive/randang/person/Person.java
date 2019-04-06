@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-class Person extends AuditorBase{
+public class Person extends AuditorBase{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

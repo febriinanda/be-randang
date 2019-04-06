@@ -1,13 +1,11 @@
 package com.beehive.randang.restaurant;
 
+import com.beehive.randang.person.Person;
 import com.beehive.randang.utils.AuditorBase;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
@@ -20,4 +18,8 @@ public class Restaurant extends AuditorBase {
 
     private String name;
     private Date establishedDate = new Date();
+
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
 }
