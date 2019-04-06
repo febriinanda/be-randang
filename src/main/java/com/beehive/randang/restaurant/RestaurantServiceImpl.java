@@ -1,5 +1,6 @@
 package com.beehive.randang.restaurant;
 
+import com.beehive.randang.exception.ResourceNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +44,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         Restaurant restaurant = this.findById(id);
 
         if(restaurant == null)
-            throw new RuntimeException("This restaurant is not exist");
+            throw new ResourceNotFound("restaurant");
 
         return restaurant;
     }

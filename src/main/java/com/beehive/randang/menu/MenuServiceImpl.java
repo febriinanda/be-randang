@@ -1,5 +1,6 @@
 package com.beehive.randang.menu;
 
+import com.beehive.randang.exception.ResourceNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +44,7 @@ public class MenuServiceImpl implements MenuService {
         Menu menu = this.findById(id);
 
         if(menu == null)
-            throw new RuntimeException("This menu is not exist");
+            throw new ResourceNotFound("menu");
 
         return menu;
     }

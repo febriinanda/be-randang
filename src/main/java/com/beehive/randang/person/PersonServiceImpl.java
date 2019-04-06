@@ -1,5 +1,6 @@
 package com.beehive.randang.person;
 
+import com.beehive.randang.exception.ResourceNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +43,7 @@ public class PersonServiceImpl implements PersonService {
         Person person = this.findById(id);
 
         if(person == null)
-            throw new RuntimeException("This person is not exist");
+            throw new ResourceNotFound("person");
 
         return person;
     }
