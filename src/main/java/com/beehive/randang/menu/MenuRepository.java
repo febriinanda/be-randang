@@ -1,7 +1,6 @@
 package com.beehive.randang.menu;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import com.beehive.randang.utils.CommonRepository;
 
-interface MenuRepository extends JpaRepository<Menu, Long>, JpaSpecificationExecutor<Menu> {
+interface MenuRepository extends CommonRepository<Menu, Long>{
 }

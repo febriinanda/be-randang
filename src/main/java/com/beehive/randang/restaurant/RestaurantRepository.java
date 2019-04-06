@@ -1,7 +1,6 @@
 package com.beehive.randang.restaurant;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import com.beehive.randang.utils.CommonRepository;
 
-interface RestaurantRepository extends JpaRepository<Restaurant, Long>, JpaSpecificationExecutor<Restaurant> {
+interface RestaurantRepository extends CommonRepository<Restaurant, Long> {
 }
