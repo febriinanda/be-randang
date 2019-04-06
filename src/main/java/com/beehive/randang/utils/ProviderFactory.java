@@ -9,4 +9,6 @@ public interface ProviderFactory<T,U> {
     void save(List<T> list);
 
     void update(U id, T t);
+
+    T shouldExist(U id);
 }

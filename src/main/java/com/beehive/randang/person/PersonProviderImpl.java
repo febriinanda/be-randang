@@ -1,5 +1,6 @@
 package com.beehive.randang.person;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,13 +31,20 @@ public class PersonProviderImpl implements PersonProvider {
     }
 
     @Override
-    public void update(Long id, Person person) {
+    public void update(Long id, @NotNull Person person) {
+        Person existing = this.shouldExist(id);
+
+        person.setId(existing.getId());
+        this.save(person);
+    }
+
+    @Override
+    public Person shouldExist(Long id) {
         Person existing = this.findById(id);
 
         if(existing == null)
             throw new RuntimeException("This person is not exist");
 
-        person.setId(existing.getId());
-        this.save(person);
+        return existing;
     }
 }
