@@ -28,4 +28,15 @@ public class PersonProviderImpl implements PersonProvider {
     public void save(List<Person> list) {
         personRepository.saveAll(list);
     }
+
+    @Override
+    public void update(Long id, Person person) {
+        Person existing = this.findById(id);
+
+        if(existing == null)
+            throw new RuntimeException("This person is not exist");
+
+        person.setId(existing.getId());
+        this.save(person);
+    }
 }

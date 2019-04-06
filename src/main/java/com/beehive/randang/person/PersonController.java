@@ -11,23 +11,24 @@ public class PersonController extends ControllerFactoryAdapter<Person, Long, Per
     @Override
     @GetMapping
     public List<Person> index() {
-        return this.adapter.findAll();
+        return this.provider.findAll();
     }
 
     @Override
     @GetMapping("/{id}")
     public Person findById(@PathVariable Long id) {
-        return this.adapter.findById(id);
+        return this.provider.findById(id);
     }
 
     @Override
     @PostMapping
     public void save(@RequestBody Person person) {
-        this.adapter.save(person);
+        this.provider.save(person);
     }
 
     @Override
-    public void save(List<Person> list) {
-        this.adapter.save(list);
+    @PutMapping("/{id}")
+    public void update(@PathVariable Long id, @RequestBody Person person) {
+        this.provider.update(id, person);
     }
 }
