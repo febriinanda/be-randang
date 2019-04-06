@@ -1,5 +1,6 @@
 package com.beehive.randang.menu;
 
+import com.beehive.randang.restaurant.Restaurant;
 import com.beehive.randang.utils.AuditorBase;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,4 +22,8 @@ public class Menu extends AuditorBase {
 
     private boolean outOfStock = false;
     private double price;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 }
