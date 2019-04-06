@@ -11,24 +11,24 @@ public class RestaurantController extends ControllerFactoryAdapter<Restaurant, L
     @Override
     @GetMapping
     public List<Restaurant> index() {
-        return this.provider.findAll();
+        return this.service.findAll();
     }
 
     @Override
     @GetMapping("/{id}")
     public Restaurant findById(@PathVariable Long id) {
-        return this.provider.findById(id);
+        return this.service.findById(id);
     }
 
     @Override
     @PostMapping
     public void save(@RequestBody Restaurant restaurant) {
-        this.provider.save(restaurant);
+        this.service.save(restaurant);
     }
 
     @Override
     @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody Restaurant restaurant) {
-        this.provider.update(id, restaurant);
+        this.service.update(id, restaurant);
     }
 }
