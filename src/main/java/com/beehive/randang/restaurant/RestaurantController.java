@@ -7,7 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/restaurant")
-public class RestaurantController extends ControllerFactoryAdapter<Restaurant, Long, RestaurantProviderImpl> {
+public class RestaurantController extends ControllerFactoryAdapter<Restaurant, Long, RestaurantServiceImpl> {
     @Override
     @GetMapping
     public List<Restaurant> index() {

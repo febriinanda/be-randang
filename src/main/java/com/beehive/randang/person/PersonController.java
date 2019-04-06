@@ -7,7 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/person")
-public class PersonController extends ControllerFactoryAdapter<Person, Long, PersonProviderImpl> {
+public class PersonController extends ControllerFactoryAdapter<Person, Long, PersonServiceImpl> {
     @Override
     @GetMapping
     public List<Person> index() {

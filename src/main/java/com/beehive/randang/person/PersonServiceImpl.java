@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class PersonProviderImpl implements PersonProvider {
+public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonRepository personRepository;
 
