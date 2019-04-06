@@ -29,7 +29,7 @@ public class InvoiceIdGenerator implements IdentifierGenerator {
         String prefix = "INV-";
         LocalDate now = LocalDate.now();
         int i;
-        Invoice invoice = invoiceService.findLastInvoice();
+        Invoice invoice = invoiceService.findLastInvoiceThisMonth();
 
         if(invoice == null){
             i = 1;

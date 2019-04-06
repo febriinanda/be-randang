@@ -5,6 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 @Service
@@ -51,7 +56,8 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public Invoice findLastInvoice() {
-        return invoiceRepository.findOne(Specification.where(InvoiceSpecification.fromLastEntry())).orElse(null);
+    public Invoice findLastInvoiceThisMonth() {
+        LocalDateTime lastDay = LocalDateTime.now().with(TemporalAdjusters.lastDayOfMonth()).with(LocalTime.MAX);
+        return invoiceRepository.findOne(Specification.where(InvoiceSpecification.fromLastEntry()).and(InvoiceSpecification.before(Date.from(lastDay.atZone(ZoneId.systemDefault()).toInstant())))).orElse(null);
     }
 }
