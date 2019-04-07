@@ -3,6 +3,7 @@ package com.beehive.randang.invoice;
 import com.beehive.randang.exception.ResourceNotFound;
 import com.beehive.randang.invoice.detail.InvoiceDetail;
 import com.beehive.randang.restaurant.Restaurant;
+import com.beehive.randang.restaurant.RestaurantServiceImpl;
 import com.beehive.randang.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +20,9 @@ import java.util.List;
 public class InvoiceServiceImpl implements InvoiceService {
     @Autowired
     private InvoiceRepository invoiceRepository;
+
+    @Autowired
+    private RestaurantServiceImpl restaurantService;
 
     @Override
     public List<Invoice> findAll() {
@@ -96,5 +100,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public List<Invoice> findByRestaurant(Restaurant restaurant, Date from, Date to) {
         return invoiceRepository.findAll(Specification.where(InvoiceSpecification.byRestaurant(restaurant)).and(InvoiceSpecification.between(from, to)));
+    }
+
+    @Override
+    public List<Invoice> findByRestaurant(long id, Date from, Date to) {
+        Restaurant restaurant = restaurantService.shouldExist(id);
+        return this.findByRestaurant(restaurant, from, to);
     }
 }

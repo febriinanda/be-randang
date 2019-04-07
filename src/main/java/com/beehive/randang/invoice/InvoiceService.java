@@ -16,4 +16,5 @@ interface InvoiceService extends ServiceFactory<Invoice, String> {
     List<Invoice> findByRestaurant(Restaurant restaurant);
 
     List<Invoice> findByRestaurant(Restaurant restaurant, Date from, Date to);
+    List<Invoice> findByRestaurant(long id, Date from, Date to);
 }
