@@ -1,6 +1,7 @@
 package com.beehive.randang.invoice.detail;
 
 import com.beehive.randang.invoice.Invoice;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class InvoiceDetail {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "invoice_id")
+    @JsonIgnore
     private Invoice invoice;
 
     @Override
