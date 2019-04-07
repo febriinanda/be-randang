@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -90,5 +91,10 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public List<Invoice> findByRestaurant(Restaurant restaurant) {
         return invoiceRepository.findAll(Specification.where(InvoiceSpecification.byRestaurant(restaurant)));
+    }
+
+    @Override
+    public List<Invoice> findByRestaurant(Restaurant restaurant, Date from, Date to) {
+        return invoiceRepository.findAll(Specification.where(InvoiceSpecification.byRestaurant(restaurant)).and(InvoiceSpecification.between(from, to)));
     }
 }

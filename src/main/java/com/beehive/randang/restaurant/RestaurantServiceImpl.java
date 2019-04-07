@@ -6,6 +6,7 @@ import com.beehive.randang.invoice.InvoiceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -58,5 +59,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     public List<Invoice> collectInvoice(long id) {
         Restaurant exist = this.shouldExist(id);
         return invoiceService.findByRestaurant(exist);
+    }
+
+    @Override
+    public List<Invoice> collectInvoice(long id, Date from, Date to) {
+        Restaurant exist = this.shouldExist(id);
+        return invoiceService.findByRestaurant(exist, from, to);
     }
 }

@@ -3,10 +3,6 @@ package com.beehive.randang.invoice;
 import com.beehive.randang.restaurant.Restaurant;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import java.util.Date;
 
 class InvoiceSpecification {
@@ -23,5 +19,9 @@ class InvoiceSpecification {
 
     static Specification<Invoice> byRestaurant(Restaurant r){
         return (Specification<Invoice>) (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("restaurant"), r);
+    }
+
+    static Specification<Invoice> between(Date from, Date to) {
+        return (Specification<Invoice>) (root, query, criteriaBuilder) -> criteriaBuilder.between(root.get("createdDate"), from, to);
     }
 }
