@@ -23,7 +23,7 @@ public class InvoiceController extends ControllerFactoryAdapter<Invoice, String,
     @Override
     @PostMapping
     public void save(@RequestBody Invoice invoice) {
-        this.service.save(invoice);
+        this.service.submit(invoice);
     }
 
     @Override
