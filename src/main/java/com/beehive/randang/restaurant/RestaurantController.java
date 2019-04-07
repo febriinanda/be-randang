@@ -1,8 +1,10 @@
 package com.beehive.randang.restaurant;
 
+import com.beehive.randang.invoice.Invoice;
 import com.beehive.randang.utils.ControllerFactoryAdapter;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -30,5 +32,10 @@ public class RestaurantController extends ControllerFactoryAdapter<Restaurant, L
     @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody Restaurant restaurant) {
         this.service.update(id, restaurant);
+    }
+
+    @GetMapping("/{id}/invoices")
+    public List<Invoice> collectInvoices(@PathVariable long id, @RequestParam Date from, @RequestParam Date to){
+        return this.service.collectInvoice(id, from, to);
     }
 }
