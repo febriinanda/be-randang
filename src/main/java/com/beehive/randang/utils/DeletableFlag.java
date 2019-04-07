@@ -1,7 +1,9 @@
 package com.beehive.randang.utils;
 
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 import javax.persistence.MappedSuperclass;
 
@@ -9,5 +11,9 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 @Data
 public class DeletableFlag extends AuditorBase {
-    private Boolean deleted = false;
+    @Getter(AccessLevel.NONE) private Boolean deleted = false;
+
+    public Boolean isDeleted() {
+        return deleted;
+    }
 }
