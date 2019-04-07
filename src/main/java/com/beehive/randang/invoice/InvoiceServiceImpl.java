@@ -1,6 +1,7 @@
 package com.beehive.randang.invoice;
 
 import com.beehive.randang.exception.ResourceNotFound;
+import com.beehive.randang.invoice.detail.InvoiceDetail;
 import com.beehive.randang.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -74,5 +75,14 @@ public class InvoiceServiceImpl implements InvoiceService {
             throw new ResourceNotFound();
 
         return invoices.get(index);
+    }
+
+    @Override
+    public void submit(Invoice invoice) {
+        for (InvoiceDetail detail : invoice.getDetails()) {
+            detail.setInvoice(invoice);
+        }
+
+        this.save(invoice);
     }
 }
