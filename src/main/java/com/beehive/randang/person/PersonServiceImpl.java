@@ -1,6 +1,8 @@
 package com.beehive.randang.person;
 
 import com.beehive.randang.exception.ResourceNotFound;
+import com.beehive.randang.restaurant.Restaurant;
+import com.beehive.randang.restaurant.RestaurantServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,9 @@ import java.util.List;
 public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonRepository personRepository;
+
+    @Autowired
+    private RestaurantServiceImpl restaurantService;
 
     @Override
     public List<Person> findAll() {
@@ -46,5 +51,11 @@ public class PersonServiceImpl implements PersonService {
             throw new ResourceNotFound("person");
 
         return person;
+    }
+
+    @Override
+    public List<Restaurant> collectRestaurant(long id) {
+        Person person = this.shouldExist(id);
+        return restaurantService.findByOwner(person);
     }
 }

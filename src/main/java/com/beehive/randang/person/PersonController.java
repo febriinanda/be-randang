@@ -1,5 +1,6 @@
 package com.beehive.randang.person;
 
+import com.beehive.randang.restaurant.Restaurant;
 import com.beehive.randang.utils.ControllerFactoryAdapter;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,5 +31,10 @@ public class PersonController extends ControllerFactoryAdapter<Person, Long, Per
     @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody Person person) {
         this.service.update(id, person);
+    }
+
+    @GetMapping("/{id}/restaurants")
+    public List<Restaurant> collectRestaurants(@PathVariable long id){
+        return this.service.collectRestaurant(id);
     }
 }

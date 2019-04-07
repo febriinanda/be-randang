@@ -38,4 +38,9 @@ public class RestaurantController extends ControllerFactoryAdapter<Restaurant, L
     public List<Invoice> collectInvoices(@PathVariable long id, @RequestParam Date from, @RequestParam Date to){
         return this.service.collectInvoice(id, from, to);
     }
+
+    @GetMapping("/owner")
+    public List<Restaurant> collectByOwner(@RequestParam long id){
+        return this.service.findByOwner(id);
+    }
 }
