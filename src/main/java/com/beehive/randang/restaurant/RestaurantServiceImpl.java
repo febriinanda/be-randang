@@ -1,6 +1,8 @@
 package com.beehive.randang.restaurant;
 
 import com.beehive.randang.exception.ResourceNotFound;
+import com.beehive.randang.invoice.Invoice;
+import com.beehive.randang.invoice.InvoiceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,9 @@ import java.util.List;
 public class RestaurantServiceImpl implements RestaurantService {
     @Autowired
     private RestaurantRepository restaurantRepository;
+
+    @Autowired
+    private InvoiceServiceImpl invoiceService;
 
     @Override
     public List<Restaurant> findAll() {
@@ -47,5 +52,11 @@ public class RestaurantServiceImpl implements RestaurantService {
             throw new ResourceNotFound("restaurant");
 
         return restaurant;
+    }
+
+    @Override
+    public List<Invoice> collectInvoice(long id) {
+        Restaurant exist = this.shouldExist(id);
+        return invoiceService.findByRestaurant(exist);
     }
 }
