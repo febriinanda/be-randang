@@ -1,7 +1,7 @@
 package com.beehive.randang.menu;
 
 import com.beehive.randang.restaurant.Restaurant;
-import com.beehive.randang.utils.AuditorBase;
+import com.beehive.randang.utils.DeletableFlag;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-public class Menu extends AuditorBase {
+public class Menu extends DeletableFlag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
